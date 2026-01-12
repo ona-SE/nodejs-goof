@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-goof",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "forwardPorts": [3001, 27017],
+  "portsAttributes": {
+    "3001": {
+      "label": "App",
+      "onAutoForward": "notify"
+    },
+    "27017": {
+      "label": "MongoDB",
+      "onAutoForward": "silent"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+# Environment Automations for nodejs-goof
+# These run when the development environment starts
+
+services:
+  mongodb:
+    name: MongoDB
+    description: MongoDB database for the todo app
+    command: |
+      docker run --rm --name goof-mongo -p 27017:27017 mongo:6
+    triggeredBy:
+      - postDevcontainerStart
+
+tasks:
+  install-deps:
+    name: Install Dependencies
+    description: Install npm dependencies
+    command: npm install
+    triggeredBy:
+      - postDevcontainerStart
