@@ -5,8 +5,11 @@ services:
   mongodb:
     name: MongoDB
     description: MongoDB database for the todo app
-    command: |
-      docker run --rm --name goof-mongo -p 27017:27017 mongo:6
+    commands:
+      start: |
+        docker run --rm --name goof-mongo -p 27017:27017 mongo:6
+      ready: |
+        docker exec goof-mongo mongosh --eval "db.adminCommand('ping')" --quiet > /dev/null 2>&1
     triggeredBy:
       - postDevcontainerStart
 
